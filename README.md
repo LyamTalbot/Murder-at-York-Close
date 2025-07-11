@@ -2,6 +2,9 @@
 
 This assignment was designed to familiarise the students with the actor model as implemented in frameworks like Akka/pekko.
 Which are fundamentally based on the actor model popularised by Erlang. 
+The actor model is a form of publisher/subscriber model where messages are sent between actors and the receipt of these messages
+triggers other events or indeed other messages to be sent. 
+This is something that functional languages are particularly good at because their design encourages passing immutable data. 
 The gameActor recieves a tick every 16ms and when it receives this message it then propgates messages out to the other actors.
 The player actors and murderer actors have their own logic. The goal of the game being to correctly identify the murderer
 before everyone has been killed. 
