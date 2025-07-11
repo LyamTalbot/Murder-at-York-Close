@@ -59,6 +59,8 @@ object PlayerState:
   */
 def player(p: Player, location: Location)(using gameActor: ActorRef[GameMessage]): Behavior[Message] = player(PlayerState.empty)
 
+
+//Basically all of the code in here is mine. 
 def player(playerState: PlayerState)(using gameActor: ActorRef[GameMessage]): Behavior[Message] = Behaviors.receive { (context, msg) =>
   msg match
     case Message.TurnUpdate(

@@ -123,7 +123,7 @@ def startedGame(
     case GameControl.Tick =>
 
       //queued is a list of (player, command)
-      
+      // I implemented this foldLeft implementation instead of the previous solution which was using the scala x <- X syntax (for x in X)
       var s:GameState = queued.foldLeft(state){case (gameState, (player, command)) => command match
         case Command.Move(direction) => gameState.move(player, direction)
         case Command.Murder(victim, weapon) => {
@@ -131,7 +131,6 @@ def startedGame(
             val newState = gameState.murder(player, victim, weapon)
             info(s"$victim has been murdered!")
             newState.playerActor(victim) ! Message.YouHaveBeenMurdered
-            // newState.playerActor.view.filterNot((player, ref) => player == victim).map((player, ref) => ref ! Message.Scream(victim))
             newState.playerActor.filterNot((player, ref) => player == victim).map((player, ref) => ref ! Message.Scream(victim))
             newState
           else
